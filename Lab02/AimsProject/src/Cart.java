@@ -5,6 +5,7 @@ public class Cart {
 			new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
 	
 	public int qtyOrdered = 0;
+	public float totalCost = 0;
 	
 	public void addDigitalVideoDisc(DigitalVideoDisc disc) {
 		if(this.qtyOrdered < 20) {
@@ -15,9 +16,24 @@ public class Cart {
 			System.out.println(" The cart is almost full\n");
 		}
 	}
-	public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
-		
+	
+	public float totalCost() {
+		for(int i = 0; i< this.qtyOrdered; i++) {
+			this.totalCost = this.totalCost + this.itemsOrdered[i].getCost();
+		}
+		return this.totalCost;
 	}
+	
+	public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
+		for(int i = 0 ; i < this.qtyOrdered ; i++) {
+			if(this.itemsOrdered[i].equals(disc)) {
+				this.itemsOrdered[i]= this.itemsOrdered[i+1];
+			}
+		}
+		qtyOrdered--;
+	}
+	
+	
 	
 	
 	
